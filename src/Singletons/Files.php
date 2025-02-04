@@ -234,8 +234,13 @@ class Files {
 
 		return $listTree;
 	}
+
+	public static function copy(string $source, string $destiny, string $permissions="775"):void {
+		copy($source, $destiny);
+		chmod($destiny, $permissions);
+	}
 	
-	public static function copyDirectory(string $source, string $destiny, string $permissions=775):bool {
+	public static function copyDirectory(string $source, string $destiny, string $permissions="775"):bool {
 
 		if (!is_dir($source)) {
 			throw new Exception("Could not find the directory {$source}");
@@ -253,7 +258,7 @@ class Files {
 			if ($pointer->isDir() && $name != '.' && $name != '..') {
 				mkdir($destiny, $permissions, true);
 			} else {
-				copy($name, $destiny);
+				self::copy($name, $destiny, $permissions);
 			}
 		}
 	
