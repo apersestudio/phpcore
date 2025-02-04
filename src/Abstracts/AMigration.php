@@ -2,7 +2,6 @@
 
 namespace PC\Abstracts;
 
-use ReflectionClass;
 use PC\Databases\DB;
 
 abstract class AMigration {
