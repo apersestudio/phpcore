@@ -2,14 +2,14 @@
 
 namespace PC\Databases;
 
+use PC\Abstracts\AMigration;
 use PC\Databases\DB;
 use PC\Databases\Migration;
+use PC\Abstracts\ATableBuilder;
 
-use PC\Databases\Base\Builders\TableBuilder;
+return new class extends AMigration {
 
-return new class extends Migration {
-
-    public function up(): void {
+    public function up(DB $db, array $params=[]): string {
 
         // We are going to work on public schema
         $dbSchema = DB::connection("master")->schema("public");
@@ -18,7 +18,7 @@ return new class extends Migration {
         $dbSchema->setDebugMode(true);
 
         // Build the create table SQL command
-        $dbSchema->createTable("my_table", function (TableBuilder $table) {
+        $dbSchema->createTable("my_table", function (ATableBuilder $table) {
             
             $table->addIncrements("table_id")->primary()->comment("Llave primaria");
             $table->addSmallIncrements("table_smallid")->index()->comment("Llave secundaria");
@@ -50,15 +50,22 @@ return new class extends Migration {
             $table->addTimestampTz("table_movedat")->comment("Fecha con zona horaria");
         });
 
-        $sql = $dbSchema->getDebugSQL();
-        print_r($sql);
+        return "Table my_table was created successfuly: " . $dbSchema->getDebugSQL();
 
     }
 
-    public function down(): void {
+    public function down(DB $db, array $params=[]): string {
 
-        $schema = DB::connection("master")->getSchemaBuilder("public");
-        $schema->dropTable('users');
+        // We are going to work on public schema
+        $dbSchema = DB::connection("master")->schema("public");
+
+        // It's useful to know first the queries we're going to execute for debugging purposes
+        $dbSchema->setDebugMode(true);
+
+        // Execute the delete statement
+        $dbSchema->dropTable('users');
+
+        return "Table my_table was created successfuly: " . $dbSchema->getDebugSQL();
 
     }
 
