@@ -2,6 +2,7 @@
     "name": "apersestudio/phpcore",
     "description": "PHP minimalistic framework",
     "type": "framework",
+    "version":"1.0.0",
     "license": "MIT",
     "autoload": {
         "psr-4": {

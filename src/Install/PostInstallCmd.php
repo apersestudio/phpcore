@@ -9,13 +9,20 @@ class PostInstallCmd {
 
     public static function start() {
 
+        
         // Copy files and directories to the root folder
         // only if those did not exists
         $root = Core::DIR_ROOT();
         $vendor = Core::DIR_VENDOR();
-
+        
+        echo "[".$root."]";
+        echo "[".$vendor."]";
+        
         $frameworkInfo = json_decode(file_get_contents($root."/composer.json"));
         $frameworkPath = $vendor."/".$frameworkInfo->name;
+
+        $frameworkInfo->name = "Hello world";
+        echo json_encode($frameworkInfo);
 
         $directoriesToCopy = ["app","public"];
         foreach ($directoriesToCopy as $dir) {
