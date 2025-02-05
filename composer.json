@@ -18,8 +18,7 @@
     ],
     "scripts": {
         "post-install-cmd": [
-            "cp vendor/apersestudio/phpcore/composer.json ./composer.json",
-            "PC\\Install\\PostInstallCmd::start"
+            "cp composer.json ../../../composer.json"
         ]
     },
     "minimum-stability": "stable",
