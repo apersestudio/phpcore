@@ -1,7 +1,7 @@
 {
     "name": "apersestudio/phpcore",
     "description": "PHP minimalistic framework",
-    "type": "framework",
+    "type": "project",
     "version":"1.0.0",
     "license": "MIT",
     "autoload": {
@@ -17,9 +17,7 @@
         }
     ],
     "scripts": {
-        "post-package-install": [
-            "PC\\Install::PostPackageInstall"
-        ]
+        "post-package-install": []
     },
     "minimum-stability": "stable",
     "require": {
