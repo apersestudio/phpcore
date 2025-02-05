@@ -1,15 +1,19 @@
 <?php
 
-namespace PC\Install;
+namespace PC;
 
 use PC\Core;
 use PC\Singletons\Files;
+use Composer\Installer\PackageEvent;
 
-class PostInstallCmd {
+class Install {
 
-    public static function start() {
+    public static function PostPackageInstall(PackageEvent $event) {
 
-        
+        $installedPackage = $event->getOperation()->getPackage();
+        echo "[YOU ARE HERE]";
+        echo "[".$installedPackage."]";
+
         // Copy files and directories to the root folder
         // only if those did not exists
         $root = Core::DIR_ROOT();

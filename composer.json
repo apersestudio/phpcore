@@ -17,8 +17,8 @@
         }
     ],
     "scripts": {
-        "post-install-cmd": [
-            "PC\\Install\\PostInstallCmd::start"
+        "post-package-install": [
+            "PC\\Install::PostPackageInstall"
         ]
     },
     "minimum-stability": "stable",
